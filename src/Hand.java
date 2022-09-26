@@ -17,7 +17,7 @@ public class Hand implements Comparable<Hand> {
      * Create a hand from a string containing all cards (e,g, "5C TD AH QS 2D")
      */
     public Hand(String c) {
-        String[] cardsStringList = c.split(""); // Split the string into an Array
+        String[] cardsStringList = c.split(" "); // Split the string into an Array
         cards = new ArrayList<>();                    // Create a new hand
 
         for (int i = 0; i < 5; i++) {                 // Fill the hand with five cards.
@@ -34,14 +34,16 @@ public class Hand implements Comparable<Hand> {
         HashMap<Card.Rank, Integer> nKind = new HashMap<Card.Rank, Integer>();
 
         for (Card c : cards){
-            if(nKind.containsKey(c.getRank())) {
-                int occurrence = nKind.get(c.getRank());
-                nKind.replace(c.getRank(),occurrence++ );
+            Card.Rank rankC = c.getRank();
+            if(nKind.containsKey(rankC)) {
+                int occurrence = nKind.get(rankC);
+                occurrence++;
+                nKind.replace(rankC,occurrence);
             } else {
-                nKind.put(c.getRank(), 1);
+                nKind.put(rankC, 1);
             }
         }
-        return nKind.values().max() == n;
+        return nKind.values().contains(n);
 
     }
     
@@ -51,26 +53,57 @@ public class Hand implements Comparable<Hand> {
      */
     public boolean isTwoPair() {
         return false;
-    }   
-    
+    }
+
     /**
-     * @returns true if the hand is a straight 
+     * @returns true if the hand is a straight
      */
     public boolean isStraight() {
-        
+        int[] arr = new int[5];
+        int index = 0;
+        for (Card c : cards) {
+            arr[index] = c.getRank().ordinal();
+            index++;
+        }
+        Arrays.sort(arr);
+        for (int i = 1; i < 5; i++) {
+            if (arr[i - 1] != arr[i] - 1) {
+                return false;
+            }
+        }
+        return true;
     }
-    
+
     /**
      * @returns true if the hand is a flush
      */
     public boolean isFlush() {
-        
+        Card.Suit nextSuit = null;
+        for (Card c : cards){
+            if (nextSuit == null) {
+                nextSuit = c.getSuit();
+            } else {
+                if (nextSuit != c.getSuit()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
-    
+
     @Override
     public int compareTo(Hand h) {
         //hint: delegate!
 		//and don't worry about breaking ties
+        int currHand = this.kind().ordinal();
+        int otherHand = h.kind().ordinal();
+        if (currHand < otherHand) {
+            return -1;
+        } else if (currHand > otherHand) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
     
     /**
@@ -79,13 +112,13 @@ public class Hand implements Comparable<Hand> {
      */
     public Kind kind() {
         if (isStraight() && isFlush()) return Kind.STRAIGHT_FLUSH;
-        else if (hasNKind(4)) return Kind.FOUR_OF_A_KIND; 
+        else if (hasNKind(4)) return Kind.FOUR_OF_A_KIND;
         else if (hasNKind(3) && hasNKind(2)) return Kind.FULL_HOUSE;
         else if (isFlush()) return Kind.FLUSH;
         else if (isStraight()) return Kind.STRAIGHT;
         else if (hasNKind(3)) return Kind.THREE_OF_A_KIND;
         else if (isTwoPair()) return Kind.TWO_PAIR;
-        else if (hasNKind(2)) return Kind.PAIR; 
+        else if (hasNKind(2)) return Kind.PAIR;
         else return Kind.HIGH_CARD;
     }
 
