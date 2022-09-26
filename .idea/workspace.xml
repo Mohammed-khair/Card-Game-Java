@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be69abde-3ce0-44de-bce6-1dd897dd4e53" name="Changes" comment="finished hasNKind">
+    <list default="true" id="be69abde-3ce0-44de-bce6-1dd897dd4e53" name="Changes" comment="Finished all methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hand.java" afterDir="false" />
     </list>
@@ -43,7 +43,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664204533448</updated>
-      <workItem from="1664204535032" duration="12357000" />
+      <workItem from="1664204535032" duration="14492000" />
     </task>
     <task id="LOCAL-00001" summary="finished hasNKind">
       <created>1664207807363</created>
@@ -52,7 +52,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664207807363</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finished all methods">
+      <created>1664217595464</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664217595464</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -71,6 +78,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finished hasNKind" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished hasNKind" />
+    <MESSAGE value="Finished all methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished all methods" />
   </component>
 </project>

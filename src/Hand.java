@@ -35,15 +35,15 @@ public class Hand implements Comparable<Hand> {
 
         for (Card c : cards){
             Card.Rank rankC = c.getRank();
-            if(nKind.containsKey(rankC)) {
+            if(nKind.containsKey(rankC)) {      //If the rank is already a key, just increment its value
                 int occurrence = nKind.get(rankC);
                 occurrence++;
                 nKind.replace(rankC,occurrence);
             } else {
-                nKind.put(rankC, 1);
+                nKind.put(rankC, 1);               //If the rank is not a key, add it and assign the value 1 to it.
             }
         }
-        return nKind.values().contains(n);
+        return nKind.values().contains(n);    // check if n is inside the list of values of the HashMap
 
     }
     
@@ -62,11 +62,11 @@ public class Hand implements Comparable<Hand> {
         int[] arr = new int[5];
         int index = 0;
         for (Card c : cards) {
-            arr[index] = c.getRank().ordinal();
+            arr[index] = c.getRank().ordinal();  // put the ordinal value of ech rank in arr
             index++;
         }
         Arrays.sort(arr);
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 5; i++) {     // sort arr and check if it is sequential
             if (arr[i - 1] != arr[i] - 1) {
                 return false;
             }
@@ -91,6 +91,15 @@ public class Hand implements Comparable<Hand> {
         return true;
     }
 
+    /**
+     * Compares this object with the specified object for order. Returns a negative integer,
+     * zero, or a positive integer as this object is less than, equal to, or greater
+     * than the specified object.
+     *
+     * @param h the object to be compared.
+     * @return -1 if this hand is worse, 0 if both hands are equal,
+     * and 1 if this hand is better.
+     */
     @Override
     public int compareTo(Hand h) {
         //hint: delegate!
